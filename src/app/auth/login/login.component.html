@@ -1,0 +1,15 @@
+<p>login works!</p>
+<app-confirm #confirm></app-confirm>
+<form>
+    表单验证必须加上name属性，否则不会验证
+    <br />
+    <input #user="ngModel" required pattern="[a-zA-Z0-9]{6,12}" [(ngModel)]="formModel.user" placeholder="user" name="u" (input)="check(user)" />
+    valid:{{user.valid}}
+    errors:{{user.errors}}
+    <div *ngIf="user.errors?.['required']">请填写user</div>
+    <div *ngIf="user.errors?.['pattern']">请填写6到12位数字或字母</div>
+    <input #pass="ngModel" required [(ngModel)]="formModel.pass" placeholder="pass" name="p" />
+    <!-- <label *ngIf="pass.errors">请填写pass</label> -->
+    <button (click)="submit(confirm)"></button>
+</form>
+
